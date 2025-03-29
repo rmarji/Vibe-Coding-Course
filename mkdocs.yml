@@ -1,0 +1,76 @@
+site_name: Vibecoding with Roocode
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.details
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+
+plugins:
+  - search
+  - minify:
+      minify_html: true
+
+nav:
+  - Home: index.md
+  - Course Overview: overview.md
+  - Lessons:
+      - "Lesson 1 - Introduction to Vibe Coding and Roocode Setup": lessons/lesson1.md
+      - "Lesson 2 - Effective Prompting and Specification Writing": lessons/lesson2.md
+      - "Lesson 3 - Basic Code Generation and Editing": lessons/lesson3.md
+      - "Lesson 4 - Iterative Development and Workflow": lessons/lesson4.md
+      - "Lesson 5 - Debugging and Error Handling with AI": lessons/lesson5.md
+      - "Lesson 6 - Refactoring and Optimization": lessons/lesson6.md
+      - "Lesson 7 - Advanced Roocode Features": lessons/lesson7.md
+      - "Lesson 8 - Testing and Quality Assurance": lessons/lesson8.md
+      - "Lesson 9 - Project Deployment and Automation": lessons/lesson9.md
+      - "Lesson 10 - Capstone Project & Best Practices": lessons/lesson10.md
+  - Resources: resources.md
+  - Memory Bank:
+      - Overview: memory_bank/index.md
+      - Enhancement Plan: memory_bank/enhancement_plan.md
+      - Practical Examples: memory_bank/practical_examples_template.md
+      - Visual Elements: memory_bank/visual_elements.md
+      - Progressive Project: memory_bank/progressive_project.md
+  - About: about.md
