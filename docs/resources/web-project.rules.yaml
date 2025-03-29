@@ -1,0 +1,50 @@
+name: "Web Development Standards"
+description: "Standard rules for frontend web projects"
+version: "1.0.0"
+maintainer: "Web Development Team"
+
+rules:
+  - category: "Code Style"
+    instructions:
+      - "Use camelCase for variable and function names"
+      - "Use PascalCase for component names"
+      - "Use descriptive variable names that explain purpose"
+      - "Keep line length under 80 characters"
+      - "Use 2 spaces for indentation"
+      
+  - category: "React Patterns"
+    instructions:
+      - "Use functional components with hooks instead of class components"
+      - "Keep components focused on a single responsibility"
+      - "Extract reusable logic into custom hooks"
+      - "Use React.memo for expensive renders"
+      - "Implement proper prop validation"
+      
+  - category: "Performance"
+    instructions:
+      - "Avoid unnecessary re-renders"
+      - "Use lazy loading for large components"
+      - "Optimize images and assets"
+      - "Implement code splitting for route-based chunks"
+      - "Use windowing for long lists (react-window)"
+
+frameworks:
+  react:
+    version: "^18.0.0"
+    rules:
+      - "Prefer useState over useReducer for simple state"
+      - "Use Context API for state that needs to be accessed by many components"
+      - "Implement error boundaries for component error handling"
+
+environments:
+  development:
+    rules:
+      - "Enable React strict mode"
+      - "Use detailed error messages"
+      - "Include comprehensive component prop documentation"
+  
+  production:
+    rules:
+      - "Remove all console.log statements"
+      - "Implement proper error tracking"
+      - "Optimize bundle size"

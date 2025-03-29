@@ -434,7 +434,303 @@ You are a senior developer fully versed in our company's coding standards and be
    - Integration tests for API endpoints
 ```
 
-### 7. Real-World Use Cases for Custom Modes
+### 7. Working with Rules Files (.rules)
+
+Enhance your custom modes with standardized, shareable rules files:
+
+#### What Are Rules Files?
+
+Rules files are structured configuration files with a `.rules` extension that allow you to:
+
+- Define consistent system instructions for Roocode
+- Share standardized rules across your team
+- Version control your AI guidance alongside code
+- Apply project-specific standards automatically
+- Create reusable rule sets for different project types
+
+#### Rules File Formats
+
+Rules files can be created in two formats:
+
+1. **YAML Format** (`.rules.yaml` or `.rules.yml`)
+   - Structured, hierarchical data format
+   - Easier to parse programmatically
+   - Good for complex rule sets with nested structure
+
+2. **Markdown Format** (`.rules.md`)
+   - More human-readable
+   - Supports rich formatting and examples
+   - Better for documentation-heavy rule sets
+
+#### Creating Your First Rules File
+
+Follow these steps to create an effective rules file:
+
+1. **Choose your format** (YAML or Markdown)
+2. **Create a new file** with a descriptive name and the `.rules` extension
+3. **Define metadata** (name, description, version)
+4. **Organize rules by category** (code style, architecture, etc.)
+5. **Add specific instructions** under each category
+6. **Include examples** to clarify expectations
+7. **Save the file** in your project repository
+8. **Reference the file** in your custom mode settings
+
+#### YAML Format Example: Web Development Rules
+
+Create a file named `web-project.rules.yaml`:
+
+```yaml
+name: "Web Development Standards"
+description: "Standard rules for frontend web projects"
+version: "1.0.0"
+maintainer: "Web Development Team"
+
+rules:
+  - category: "Code Style"
+    instructions:
+      - "Use camelCase for variable and function names"
+      - "Use PascalCase for component names"
+      - "Use descriptive variable names that explain purpose"
+      - "Keep line length under 80 characters"
+      - "Use 2 spaces for indentation"
+      
+  - category: "React Patterns"
+    instructions:
+      - "Use functional components with hooks instead of class components"
+      - "Keep components focused on a single responsibility"
+      - "Extract reusable logic into custom hooks"
+      - "Use React.memo for expensive renders"
+      - "Implement proper prop validation"
+      
+  - category: "Performance"
+    instructions:
+      - "Avoid unnecessary re-renders"
+      - "Use lazy loading for large components"
+      - "Optimize images and assets"
+      - "Implement code splitting for route-based chunks"
+      - "Use windowing for long lists (react-window)"
+
+frameworks:
+  react:
+    version: "^18.0.0"
+    rules:
+      - "Prefer useState over useReducer for simple state"
+      - "Use Context API for state that needs to be accessed by many components"
+      - "Implement error boundaries for component error handling"
+
+environments:
+  development:
+    rules:
+      - "Enable React strict mode"
+      - "Use detailed error messages"
+      - "Include comprehensive component prop documentation"
+  
+  production:
+    rules:
+      - "Remove all console.log statements"
+      - "Implement proper error tracking"
+      - "Optimize bundle size"
+```
+
+#### Markdown Format Example: API Development Rules
+
+Create a file named `api-project.rules.md`:
+
+```markdown
+# API Development Rules
+
+**Version:** 1.0.0
+**Maintainer:** Backend Team
+**Description:** Standard rules for REST API development
+
+## Code Style
+
+- Use snake_case for endpoint URLs
+- Use camelCase for function and variable names
+- Use PascalCase for class names
+- Limit function length to 25 lines
+- Follow RESTful resource naming conventions
+
+## API Design
+
+- Use nouns, not verbs in endpoint paths
+- Use plural resource names (e.g., /users not /user)
+- Use HTTP methods appropriately:
+  - GET for retrieval
+  - POST for creation
+  - PUT for complete updates
+  - PATCH for partial updates
+  - DELETE for removal
+- Include API version in URL path (e.g., /v1/users)
+- Return appropriate HTTP status codes
+
+## Security
+
+- Validate all input data
+- Implement proper authentication
+- Use rate limiting for all endpoints
+- Never expose sensitive information in responses
+- Apply principle of least privilege
+- Implement proper CORS configuration
+
+## Documentation
+
+- Document all endpoints with:
+  - URL, method, and description
+  - Request parameters and body schema
+  - Response format and status codes
+  - Authentication requirements
+  - Example requests and responses
+- Use OpenAPI/Swagger for API documentation
+
+## Frameworks: Express.js
+
+- Organize routes into separate modules
+- Use middleware for cross-cutting concerns
+- Implement proper error handling middleware
+- Use async/await with try/catch blocks
+- Implement controller pattern for route handlers
+```
+
+#### Mobile App Development Rules
+
+Create a file named `mobile-app.rules.yaml`:
+
+```yaml
+name: "Mobile App Development Standards"
+description: "Rules for React Native mobile applications"
+version: "1.0.0"
+maintainer: "Mobile Team"
+
+rules:
+  - category: "Architecture"
+    instructions:
+      - "Follow atomic design principles for UI components"
+      - "Separate business logic from UI components"
+      - "Use a navigation library consistently throughout the app"
+      - "Implement proper state management"
+      - "Handle device orientation changes gracefully"
+  
+  - category: "Performance"
+    instructions:
+      - "Minimize bridge crossings in React Native"
+      - "Optimize list rendering with FlatList"
+      - "Use PureComponent or memo for list items"
+      - "Implement proper image caching"
+      - "Reduce app size by optimizing assets"
+  
+  - category: "User Experience"
+    instructions:
+      - "Follow platform-specific design guidelines"
+      - "Implement loading states for all async operations"
+      - "Support both light and dark modes"
+      - "Make touch targets at least 44x44 pts"
+      - "Provide haptic feedback for important actions"
+  
+  - category: "Offline Support"
+    instructions:
+      - "Cache critical data for offline use"
+      - "Handle network status changes gracefully"
+      - "Implement background sync when connection is restored"
+      - "Provide clear offline mode indicators"
+      - "Persist user input to prevent data loss"
+
+frameworks:
+  react-native:
+    version: "^0.70.0"
+    rules:
+      - "Use Reanimated for complex animations"
+      - "Implement proper navigation with React Navigation"
+      - "Use Hermes engine for improved performance"
+```
+
+#### Step-by-Step: Creating Project-Specific Rules Files
+
+To create a rules file tailored to your project:
+
+1. **Identify key requirements:**
+   - Coding standards specific to your project/team
+   - Common patterns and practices
+   - Framework-specific guidelines
+   - Project-specific constraints
+
+2. **Organize rules by category:**
+   - Group related rules under clear categories
+   - Prioritize most important rules first
+   - Keep instructions clear and actionable
+
+3. **Add examples and clarifications:**
+   - Include code examples of correct implementation
+   - Explain the reasoning behind important rules
+   - Document exceptions or special cases
+
+4. **Review with your team:**
+   - Ensure consensus on standards
+   - Get feedback on clarity and completeness
+   - Update based on team input
+
+5. **Implement version control:**
+   - Store rules files in your repository
+   - Update version number when rules change
+   - Document major changes in comments or changelog
+
+#### Impact of Rules Files on Code Generation
+
+Rules files significantly improve your experience with Roocode by:
+
+1. **Consistency**: Ensuring all generated code follows the same standards
+2. **Efficiency**: Reducing the need to repeat the same instructions in prompts
+3. **Collaboration**: Creating shared understanding across team members
+4. **Maintainability**: Making it easier to update and evolve standards
+5. **Onboarding**: Helping new team members understand project standards
+
+**Before using rules files:**
+```
+[Using default mode]
+Create a React component for a user profile that displays the user's name, email, and profile picture. Make it responsive and follow best practices.
+```
+
+**After using rules files:**
+```
+[Using custom mode with web-project.rules.yaml]
+Create a user profile component.
+```
+
+The second prompt, despite being shorter, would generate code that automatically follows all the standards defined in your rules file, including code style, React patterns, performance considerations, and more.
+
+#### Integrating Rules Files with Custom Modes
+
+To apply your rules file to a custom mode:
+
+1. **In VS Code:**
+   - Open Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`)
+   - Type "Roocode: Manage Custom Modes"
+   - Select "Edit Existing Mode" or "Create New Mode"
+   - In the mode configuration, add a reference to your rules file:
+     ```
+     Rules File: ./path/to/your-project.rules.yaml
+     ```
+
+2. **Using direct prompts:**
+   ```
+   [Switch to Custom Mode]
+   Please load the rules from ./path/to/your-project.rules.yaml and apply them to all code generation for this project.
+   ```
+
+#### Troubleshooting Common Rules File Issues
+
+| Issue | Possible Cause | Solution |
+|-------|----------------|----------|
+| Rules not being applied | Incorrect file path | Double-check the path to your rules file |
+| Conflicting rules | Contradictory instructions | Review and resolve conflicting guidance |
+| Too many rules | Overloaded with instructions | Prioritize and simplify your rule set |
+| Rules too restrictive | Overly specific constraints | Balance guidance with flexibility |
+| YAML parsing errors | Syntax issues in YAML | Validate YAML syntax with a linter |
+| Formatting problems in Markdown | Markdown syntax issues | Review Markdown formatting |
+
+**Tip:** Start with a minimal set of critical rules and gradually expand as needed. This prevents overwhelming the AI with too many instructions at once.
+
+### 8. Real-World Use Cases for Custom Modes
 
 Discover practical applications of custom modes in development:
 
@@ -489,7 +785,7 @@ Discover practical applications of custom modes in development:
 3. Review and refine the generated documentation
 4. Compile into comprehensive documentation
 
-### 8. Exercise: Create a New Custom Mode
+### 9. Exercise: Create a New Custom Mode
 
 Hands-on practice creating a specialized mode:
 
@@ -528,7 +824,7 @@ Examples:
 [Provide examples of before/after optimizations]
 ```
 
-### 9. Common Mistakes and Best Practices for Custom Modes
+### 10. Common Mistakes and Best Practices for Custom Modes
 
 Avoid pitfalls and optimize your custom modes:
 
@@ -574,7 +870,7 @@ When creating React components:
    - Export statement
 ```
 
-### 10. Combining Multiple Modes for Complex Workflows
+### 11. Combining Multiple Modes for Complex Workflows
 
 Advanced strategies for leveraging multiple custom modes:
 
@@ -652,7 +948,10 @@ Key takeaways:
 - Custom modes transform Roocode into specialized coding assistants
 - Creating effective modes requires clear, focused instructions
 - Different modes produce significantly different code for the same prompt
+- Rules files (.rules) provide standardized, shareable configurations for consistent AI behavior
+- YAML and Markdown formats offer flexible options for defining project-specific rules
 - Specialized modes like Security Auditor can help identify critical issues
+- Rules files significantly improve team collaboration and code consistency
 - Combining multiple modes creates powerful development workflows
 - Regular refinement improves mode effectiveness over time
 
@@ -668,4 +967,7 @@ Key takeaways:
 - [Prompt Engineering Guide](https://www.promptingguide.ai/)
 - [OWASP Top 10 Web Application Security Risks](https://owasp.org/www-project-top-ten/)
 - [Testing Best Practices](https://github.com/goldbergyoni/javascript-testing-best-practices)
-- [Clean Code Principles](https://github.com/ryanmcdermott/clean-code-javascript) 
+- [Clean Code Principles](https://github.com/ryanmcdermott/clean-code-javascript)
+- [Rules Files Templates Repository](https://github.com/vibecoding/roocode-rules-templates)
+- [YAML Syntax Guide](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html)
+- [Markdown Guide for Rules Files](https://www.markdownguide.org/basic-syntax/)

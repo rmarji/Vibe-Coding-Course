@@ -1,0 +1,54 @@
+name: "Mobile App Development Standards"
+description: "Rules for React Native mobile applications"
+version: "1.0.0"
+maintainer: "Mobile Team"
+
+rules:
+  - category: "Architecture"
+    instructions:
+      - "Follow atomic design principles for UI components"
+      - "Separate business logic from UI components"
+      - "Use a navigation library consistently throughout the app"
+      - "Implement proper state management"
+      - "Handle device orientation changes gracefully"
+  
+  - category: "Performance"
+    instructions:
+      - "Minimize bridge crossings in React Native"
+      - "Optimize list rendering with FlatList"
+      - "Use PureComponent or memo for list items"
+      - "Implement proper image caching"
+      - "Reduce app size by optimizing assets"
+  
+  - category: "User Experience"
+    instructions:
+      - "Follow platform-specific design guidelines"
+      - "Implement loading states for all async operations"
+      - "Support both light and dark modes"
+      - "Make touch targets at least 44x44 pts"
+      - "Provide haptic feedback for important actions"
+  
+  - category: "Offline Support"
+    instructions:
+      - "Cache critical data for offline use"
+      - "Handle network status changes gracefully"
+      - "Implement background sync when connection is restored"
+      - "Provide clear offline mode indicators"
+      - "Persist user input to prevent data loss"
+
+frameworks:
+  react-native:
+    version: "^0.70.0"
+    rules:
+      - "Use Reanimated for complex animations"
+      - "Implement proper navigation with React Navigation"
+      - "Use Hermes engine for improved performance"
+      - "Minimize use of native modules unless necessary"
+      - "Utilize Fast Refresh during development"
+
+security:
+  - "Implement secure storage for sensitive data"
+  - "Use app-level encryption for stored data"
+  - "Implement certificate pinning for network requests"
+  - "Add biometric authentication for sensitive operations"
+  - "Obfuscate code in production builds"
